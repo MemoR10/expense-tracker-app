@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant "Web Application" as Web
+participant "API" as API
+participant "Database" as DB
+participant "AI Service" as AI
+
+User -> Web: Open Add Expense Form
+Web -> Web: Validate Input Fields
+User -> Web: Submit Expense Details
+Web -> AI: Send Receipt for Processing
+AI --> Web: Return Processed Data
+Web -> API: Send Expense Data
+API -> DB: Store Expense Record
+DB --> API: Confirm Storage
+API --> Web: Confirm Expense Added
+Web --> User: Show Success Message
+
+@enduml

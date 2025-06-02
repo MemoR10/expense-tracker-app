@@ -1,0 +1,19 @@
+@startuml
+!include <C4/C4_Context>
+
+Person(user, "User", "Interacts with the application to manage expenses")
+System_Boundary(app, "Expense Tracker App") {
+    Container(frontend, "Frontend", "Next.js", "Handles user interface and interactions")
+    Container_Backend(backend, "Backend", "Supabase", "Handles data storage and business logic")
+    Container(auth, "Authentication", "Clerk", "Manages user authentication and authorization")
+    Container(ai, "AI Service", "OpenAI", "Processes receipts for automated data extraction")
+}
+
+Rel(user, frontend, "Uses")
+Rel(frontend, backend, "Fetches and stores data")
+Rel(frontend, auth, "Authenticates users")
+Rel(frontend, ai, "Sends receipts for processing")
+Rel(backend, auth, "Validates user sessions")
+Rel(backend, ai, "Stores processed receipt data")
+
+@enduml
